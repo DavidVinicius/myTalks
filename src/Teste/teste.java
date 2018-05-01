@@ -5,6 +5,7 @@
  */
 package Teste;
 
+import Services.Speaker;
 import com.gtranslate.Language;
 import com.gtranslate.Translator;
 import java.io.*;
@@ -77,17 +78,9 @@ public class teste extends javax.swing.JFrame {
     private static final String VOICENAME = "kevin16";
     private void btnFalarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFalarActionPerformed
             // TODO add your handling code here:
-            Voice voice;
-            VoiceManager vm = VoiceManager.getInstance();
-            voice = vm.getVoice(VOICENAME);
-            Translator translate = Translator.getInstance();
-            String texto = translate.translate(text.getText(), Language.ENGLISH, Language.PORTUGUESE);
-            System.out.println(texto); // "Bună ziua!" 
             
-            voice.allocate();
             try{
-                System.out.println(voice.getRate());                
-                voice.speak(text.getText());
+                Speaker.speak(text.getText());                
             }catch(Exception e){}
             
     }//GEN-LAST:event_btnFalarActionPerformed
