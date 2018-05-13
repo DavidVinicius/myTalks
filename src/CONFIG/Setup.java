@@ -52,6 +52,7 @@ public class Setup {
          String sql = "CREATE TABLE IF NOT EXISTS Phrases("
                       + "id INTEGER primary key AUTOINCREMENT not null,"
                       + "phrase varchar(255) not null,"
+                      + "translation varchar(255),"
                  + "     talk_id INTEGER not null,"
                  + "     FOREIGN KEY(talk_id) REFERENCES Talks(id) ON DELETE CASCADE);";                                                                  
         
@@ -77,7 +78,7 @@ public class Setup {
     {
         String SQL[] = new String[2];
         SQL[0] = "INSERT INTO Talks(name) VALUES ('Saudações'),('Frutas');";
-        SQL[1] = "INSERT INTO Phrases(phrase,talk_id) VALUES('Hello',1);";
+        SQL[1] = "INSERT INTO Phrases(phrase,translation,talk_id) VALUES('Hello','Olá',1);";
         
          
         Connection con = null;
