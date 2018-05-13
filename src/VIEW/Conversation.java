@@ -35,8 +35,9 @@ public class Conversation extends javax.swing.JPanel {
     private void initComponents() {
 
         Name = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAddPhrase = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 152, 185));
         setMinimumSize(new java.awt.Dimension(446, 26));
@@ -44,7 +45,12 @@ public class Conversation extends javax.swing.JPanel {
         Name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Name.setText("Nome");
 
-        jButton1.setText("Edit");
+        btnAddPhrase.setText("Add");
+        btnAddPhrase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPhraseActionPerformed(evt);
+            }
+        });
 
         deleteButton.setText("delete");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -53,6 +59,8 @@ public class Conversation extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Edit");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,20 +68,21 @@ public class Conversation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(btnAddPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(deleteButton)
-                    .addComponent(Name))
-                .addContainerGap(0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnAddPhrase)
+                .addComponent(deleteButton)
+                .addComponent(Name)
+                .addComponent(jButton1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -83,6 +92,15 @@ public class Conversation extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void btnAddPhraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhraseActionPerformed
+        // TODO add your handling code here:
+        talksScreen.setVisible(false);
+        Phrases phraseFrame = new Phrases(talksScreen,this.id);
+        phraseFrame.setTalkName(this.Name.getText());
+        phraseFrame.setVisible(true);
+        
+    }//GEN-LAST:event_btnAddPhraseActionPerformed
     
     public void setName(String name)
     {
@@ -103,6 +121,7 @@ public class Conversation extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Name;
+    private javax.swing.JButton btnAddPhrase;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
