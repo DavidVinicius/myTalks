@@ -5,17 +5,48 @@
  */
 package VIEW;
 
+import MODEL.PHRASEDAO.PhraseDAO;
+
 /**
  *
  * @author David
  */
 public class PhraseComponent extends javax.swing.JPanel {
-
+    Phrases phrasesScreen;
+    private int ID;
+    PhraseDAO phraseDAO;
     /**
      * Creates new form PhraseComponent
      */
-    public PhraseComponent() {
+    public PhraseComponent(Phrases phrasesScreen) {
         initComponents();
+        this.phrasesScreen = phrasesScreen;
+        phraseDAO = new PhraseDAO();
+    }
+    
+    public PhraseComponent() {
+        initComponents();        
+        phraseDAO = new PhraseDAO();
+    }
+    
+    public void setPhraseText(String text)
+    {
+        this.phrase.setText(text);
+    }
+    
+    public void setTranslationText(String text)
+    {
+        this.translation.setText(text);
+    }
+    
+    public void setPhrasesScreen(Phrases p)
+    {
+        this.phrasesScreen = p;
+    }
+    
+    public void setPhraseID(int ID)
+    {
+        this.ID = ID;
     }
 
     /**
@@ -27,18 +58,23 @@ public class PhraseComponent extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        phrase = new javax.swing.JLabel();
+        translation = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
-        jLabel1.setText("Phrase");
+        phrase.setText("Phrase");
 
-        jLabel2.setText("Translation");
+        translation.setText("Translation");
 
-        jButton1.setText("Edit");
+        btnEdit.setText("Edit");
 
-        jButton2.setText("Delete");
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -47,35 +83,42 @@ public class PhraseComponent extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(phrase)
+                    .addComponent(translation))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(jButton2)
+                .addComponent(btnDelete)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(phrase)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(translation)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        System.out.println("deletar phrase");
+        phrasesScreen.removeElement(this);
+        phraseDAO.deletePhrase(this.ID);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JLabel phrase;
+    private javax.swing.JLabel translation;
     // End of variables declaration//GEN-END:variables
 }

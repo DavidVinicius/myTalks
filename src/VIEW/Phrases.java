@@ -7,6 +7,8 @@ package VIEW;
 
 import MODEL.PHRASEDAO.Phrase;
 import MODEL.PHRASEDAO.PhraseDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,18 +17,24 @@ import MODEL.PHRASEDAO.PhraseDAO;
 public class Phrases extends javax.swing.JFrame {
     private Talks talkScreen;
     private int talkID;
+    private List <PhraseComponent> phrasesComponent;
     /**
      * Creates new form Phrases
      */
     public Phrases() {
-        initComponents();
+        initComponents();        
     }
     
     public Phrases(Talks talk, int id)
     {
         initComponents();
-        talkScreen  = talk;
-        this.talkID = id;
+        phrasesComponent = new ArrayList<>();
+        talkScreen       = talk;
+        this.talkID      = id;
+        
+        
+        System.out.println("Entrou "+id);
+        updatePhrases(this.talkID);
     }
     
     public void setTalkName(String name)
@@ -39,15 +47,31 @@ public class Phrases extends javax.swing.JFrame {
         this.talkID = id;
     }
     
-    public void getPhrases(int id)
+    
+    public void removeElement(PhraseComponent phraseComponent)
     {
+        this.phrasesPanel.remove(phraseComponent);
+        this.phrasesComponent.remove(phraseComponent);
+        phrasesPanel.updateUI();
+    }
+    
+    public void updatePhrases(int id)
+    {            
       PhraseDAO phrase  = new PhraseDAO();
       Phrase[]  phrases = phrase.getPhrases(id);
       
       for(int i = 0; i < phrases.length; i++)
       {
+          PhraseComponent tempPhrase = new PhraseComponent(this);          
+          tempPhrase.setPhraseText(phrases[i].getPhrase());
+          tempPhrase.setTranslationText(phrases[i].getTranslation());          
+          tempPhrase.setPhraseID(phrases[i].getId());
           
+          this.phrasesComponent.add(tempPhrase);
+          this.phrasesPanel.add(tempPhrase);
       }           
+      
+      this.phrasesPanel.updateUI();
       
     }
 
@@ -60,11 +84,11 @@ public class Phrases extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        phrase = new javax.swing.JTextField();
-        phrase1 = new javax.swing.JTextField();
+        translation = new javax.swing.JTextField();
+        phraseText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCreate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         phrasesPanel = new javax.swing.JPanel();
         talkName = new javax.swing.JLabel();
@@ -76,9 +100,14 @@ public class Phrases extends javax.swing.JFrame {
 
         jLabel2.setText("Translation");
 
-        jButton1.setText("CREATE");
+        btnCreate.setText("CREATE");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
-        phrasesPanel.setLayout(new java.awt.GridLayout());
+        phrasesPanel.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(phrasesPanel);
 
         talkName.setText("NAME Talk");
@@ -101,13 +130,13 @@ public class Phrases extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(phrase1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phraseText, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel1)
-                                    .addComponent(phrase, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(translation, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(362, 362, 362)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -130,13 +159,13 @@ public class Phrases extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(phrase1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(phraseText, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(phrase, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(translation, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnCreate)
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
         );
@@ -149,6 +178,14 @@ public class Phrases extends javax.swing.JFrame {
         talkScreen.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        Phrase phraseObject  = new Phrase();
+        phraseObject.setPhrase(this.phraseText.getText());
+        phraseObject.setTranslation(translation.getText());
+        phraseObject.setTalkId(talkID);                
+    }//GEN-LAST:event_btnCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,13 +224,13 @@ public class Phrases extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCreate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField phrase;
-    private javax.swing.JTextField phrase1;
+    private javax.swing.JTextField phraseText;
     private javax.swing.JPanel phrasesPanel;
     private javax.swing.JLabel talkName;
+    private javax.swing.JTextField translation;
     // End of variables declaration//GEN-END:variables
 }
