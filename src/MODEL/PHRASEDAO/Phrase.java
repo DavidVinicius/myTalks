@@ -13,6 +13,15 @@ public class Phrase {
     private String phrase;
     private String translation;
     private int id;
+    private int talkId;
+
+    public int getTalkId() {
+        return talkId;
+    }
+
+    public void setTalkId(int talkId) {
+        this.talkId = talkId;
+    }
 
     public String getPhrase() {
         return phrase;

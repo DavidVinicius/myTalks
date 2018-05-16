@@ -9,23 +9,29 @@ import Services.SQLiteConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author David
  */
 public class PhraseDAO implements IPhraseDAO {
+    Connection con         = null;
+    PreparedStatement stm  = null;
+    ResultSet        rs    = null;
+    Phrase [] phrases      = null;
+    Phrase    phrase       = null;
 
     @Override
     public Phrase[] getPhrases(int ID) {
-        Connection con         = null;
-        PreparedStatement stm  = null;
-        ResultSet        rs    = null;
-        Phrase [] phrases      = null;
+        
         try{
             con = SQLiteConnection.getConnection();
-            stm = con.prepareStatement("SELECT * FROM Phrases WHERE talk_id = ?");
-            stm.setInt(0, ID);
+            stm = con.prepareStatement("SELECT * FROM Phrases WHERE talk_id = "+ID);
+            //stm.setInt(1, ID);            
             rs = stm.executeQuery();
             
             phrases = new Phrase[this.size(ID)];
@@ -37,29 +43,72 @@ public class PhraseDAO implements IPhraseDAO {
                 phrase.setId(rs.getInt("id"));
                 phrase.setPhrase(rs.getString("phrase"));
                 phrase.setTranslation(rs.getString("translation"));
+                phrase.setTalkId(rs.getInt("talk_id"));
                 
                 phrases[i] = phrase;
+                i++;
             }
             
             return phrases;                        
             
-        }catch(Exception e){}
+        }catch(Exception e){
+            System.out.println(e);
+        }
         return null;
     }
 
     @Override
-    public boolean createPhrase(Phrase phrase) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean createPhrase(Phrase phrase) {         
+        
+        try{
+            con = SQLiteConnection.getConnection();
+            stm = con.prepareStatement("INSERT INTO Phrases(phrase,translation,talk_id) VALUES (?,?,?)");
+            stm.setString(1, phrase.getPhrase());
+            stm.setString(2, phrase.getTranslation());
+            stm.setInt(3,phrase.getTalkId());
+            stm.executeUpdate();            
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(PhraseDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
     }
 
     @Override
     public boolean deletePhrase(int phraseID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            con = SQLiteConnection.getConnection();
+            stm = con.prepareStatement("DELETE FROM Phrases WHERE id = ?");
+            stm.setInt(1, phraseID);
+            stm.executeQuery();
+            return true;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PhraseDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
     }
 
     @Override
     public boolean updatePhrase(Phrase phrase) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        con = SQLiteConnection.getConnection();
+        
+        try {
+            stm = con.prepareStatement("UPDATE Phrases SET phrase = ?, translation = ? WHERE id = ?");
+            stm.setString(1, phrase.getPhrase());
+            stm.setString(2, phrase.getTranslation());
+            stm.setInt(3, phrase.getId());
+            stm.executeUpdate();
+            return true;
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(PhraseDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+        
     }
 
     @Override
@@ -67,8 +116,8 @@ public class PhraseDAO implements IPhraseDAO {
         int total = 0;
         try{
             Connection       con = SQLiteConnection.getConnection();
-            PreparedStatement stm = con.prepareStatement("SELECT count(*) as qtd from Phrases WHERE talk_id =  ?");
-            stm.setInt(0, id);
+            PreparedStatement stm = con.prepareStatement("SELECT count(*) as qtd from Phrases WHERE talk_id = ?");
+            stm.setInt(1, id);
             
             ResultSet rs = stm.executeQuery();
             
