@@ -6,6 +6,7 @@
 package mytalks;
 
 import CONFIG.Setup;
+import VIEW.Home;
 
 /**
  *
@@ -20,6 +21,9 @@ public class MyTalks {
         // TODO code application logic here
         Setup setup = new Setup();
         setup.createDatabase();
+        Home home = new Home();
+        home.setVisible(true);
+        
     }
     
 }
