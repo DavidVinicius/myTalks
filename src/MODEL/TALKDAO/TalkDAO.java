@@ -26,7 +26,7 @@ public class TalkDAO implements ITalkDAO{
     public Talk getTalkWhere(String name) {
         Connection con        = null;
         PreparedStatement stm = null;
-        ResultSet          rs = null;
+        ResultSet          rs =  null;
         Talk talk             = new Talk();
         try{
             
