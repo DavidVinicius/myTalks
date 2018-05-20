@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package MODEL.PHRASEDAO;
-
+import Services.SQLiteConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 /**
  *
  * @author David
@@ -46,5 +50,19 @@ public class Phrase {
     public void setId(int id) {
         this.id = id;
     }
-    
+    /*
+        public void insertPhrase (){
+        Connection con = null;
+        Statement stm = null;    
+        
+        String sql = "INSERT INTO Phrases (id, phrase, translation) VALUES (?, ?, ?)";
+            try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, sql);
+            }
+            catch(SQLException u){
+            
+            }
+    }
+    */
 }
