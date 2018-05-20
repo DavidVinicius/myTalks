@@ -9,6 +9,7 @@ import MODEL.PHRASEDAO.Phrase;
 import MODEL.PHRASEDAO.PhraseDAO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -59,7 +60,9 @@ public class Phrases extends javax.swing.JFrame {
     {            
       PhraseDAO phrase  = new PhraseDAO();
       Phrase[]  phrases = phrase.getPhrases(id);
-      
+      this.phrasesPanel.removeAll();
+      this.phrasesComponent.removeAll(phrasesComponent);
+        System.out.println("testando");
       for(int i = 0; i < phrases.length; i++)
       {
           PhraseComponent tempPhrase = new PhraseComponent(this);          
@@ -100,7 +103,7 @@ public class Phrases extends javax.swing.JFrame {
 
         jLabel2.setText("Translation");
 
-        btnCreate.setText("CREATE");
+        btnCreate.setText("SAVE");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
@@ -165,8 +168,8 @@ public class Phrases extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(translation, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCreate)
-                .addGap(24, 24, 24)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
         );
 
@@ -184,9 +187,23 @@ public class Phrases extends javax.swing.JFrame {
         Phrase phraseObject  = new Phrase();
         phraseObject.setPhrase(this.phraseText.getText());
         phraseObject.setTranslation(translation.getText());
-        phraseObject.setTalkId(talkID);                
+        phraseObject.setTalkId(talkID);  
+        
+        PhraseDAO phrase = new PhraseDAO();
+        if(phrase.createPhrase(phraseObject))
+        {               
+            cleanFields();
+            this.updatePhrases(talkID);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar criar");
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
-
+ 
+    private void cleanFields()
+    {
+        this.phraseText.setText("");
+        this.translation.setText("");
+    }
     /**
      * @param args the command line arguments
      */
