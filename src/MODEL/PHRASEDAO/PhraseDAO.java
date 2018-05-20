@@ -81,7 +81,7 @@ public class PhraseDAO implements IPhraseDAO {
             con = SQLiteConnection.getConnection();
             stm = con.prepareStatement("DELETE FROM Phrases WHERE id = ?");
             stm.setInt(1, phraseID);
-            stm.executeQuery();
+            stm.executeUpdate();
             return true;
             
         } catch (SQLException ex) {
