@@ -109,9 +109,13 @@ public class PhraseComponent extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        System.out.println("deletar phrase");
-        phrasesScreen.removeElement(this);
-        phraseDAO.deletePhrase(this.ID);
+        //System.out.println("deletar phrase"+this.ID);
+        if(phraseDAO.deletePhrase(this.ID))
+        {
+            phrasesScreen.removeElement(this);
+        }
+        
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 
