@@ -32,9 +32,7 @@ public class Phrases extends javax.swing.JFrame {
         phrasesComponent = new ArrayList<>();
         talkScreen       = talk;
         this.talkID      = id;
-        
-        
-        System.out.println("Entrou "+id);
+                        
         updatePhrases(this.talkID);
     }
     
@@ -62,7 +60,11 @@ public class Phrases extends javax.swing.JFrame {
       Phrase[]  phrases = phrase.getPhrases(id);
       this.phrasesPanel.removeAll();
       this.phrasesComponent.removeAll(phrasesComponent);
-        System.out.println("testando");
+      this.phrasesPanel.repaint();
+      this.phrasesPanel.validate();
+      this.phrasesPanel.updateUI();
+      
+      System.out.println("testando .........");
       for(int i = 0; i < phrases.length; i++)
       {
           PhraseComponent tempPhrase = new PhraseComponent(this);          
