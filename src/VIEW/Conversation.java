@@ -43,6 +43,11 @@ public class Conversation extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 152, 185));
         setMinimumSize(new java.awt.Dimension(446, 26));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selecionado(evt);
+            }
+        });
 
         Name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Name.setText("Nome");
@@ -117,6 +122,14 @@ public class Conversation extends javax.swing.JPanel {
         talkModal.setTalkName(this.Name.getText());
         talkModal.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void selecionado(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionado
+        // TODO add your handling code here:
+        talksScreen.setVisible(false);
+        Phrases phraseFrame = new Phrases(talksScreen,this.id);
+        phraseFrame.setTalkName(this.Name.getText());
+        phraseFrame.setVisible(true);
+    }//GEN-LAST:event_selecionado
     
     public void setName(String name)
     {
