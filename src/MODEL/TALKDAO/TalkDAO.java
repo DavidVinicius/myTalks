@@ -21,13 +21,24 @@ import java.util.logging.Logger;
 public class TalkDAO implements ITalkDAO{
     
     public Talk talk;
+    private Connection con;
+    private PreparedStatement stm;
+    private ResultSet         rs;
+    
+    public TalkDAO()
+    {
+          con        = null;
+          stm        = null;
+          rs         = null;
+    }
 
     @Override
     public Talk getTalkWhere(String name) {
-        Connection con        = null;
-        PreparedStatement stm = null;
-        ResultSet          rs = null;
+        
         Talk talk             = new Talk();
+        this.con        = null;
+        this.stm        = null;
+        this.rs         = null;
         try{
             
             con = SQLiteConnection.getConnection();            
@@ -51,12 +62,11 @@ public class TalkDAO implements ITalkDAO{
     }
 
     @Override
-    public Talk[] getTalks() {
-        Connection con   = null;
-        ResultSet  rs    = null;
-        PreparedStatement stm    = null;
-        Talk[]    talks  = null;
-        
+    public Talk[] getTalks() {        
+        Talk[]    talks       = null;      
+        Connection con        = null;
+        PreparedStatement stm = null;
+        ResultSet         rs  = null;
         
         try {
             con = SQLiteConnection.getConnection();            
@@ -92,15 +102,24 @@ public class TalkDAO implements ITalkDAO{
     }
 
     @Override
-    public boolean deleteTalk(Talk talk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean deleteTalk(int id) {
+        con = SQLiteConnection.getConnection();
+        
+        try {
+            stm = con.prepareStatement("DELETE FROM Talks WHERE id = ?");
+            stm.setInt(1, id);
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TalkDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+        
     }
     
     public int size() throws SQLException
-    {
-        Connection        con = null;
-        PreparedStatement stm = null;
-        ResultSet         rs  = null;
+    {        
         int total             = 0;
         
         try{
@@ -121,6 +140,23 @@ public class TalkDAO implements ITalkDAO{
             System.out.println(e);
         }
         return total;
+    }
+
+    @Override
+    public boolean updateTalk(Talk talk) {
+        con = SQLiteConnection.getConnection();
+        try {
+            stm = con.prepareStatement("UPDATE Talks SET name = ? WHERE id = ?");
+            stm.setString(1,talk.getName());
+            stm.setInt(2, talk.getId());
+            
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TalkDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
     }
     
 }

@@ -14,6 +14,7 @@ public interface ITalkDAO {
     public Talk getTalkWhere(String name);
     public Talk[] getTalks();
     public boolean createTalk(Talk talk);
-    public boolean deleteTalk(Talk talk);
+    public boolean deleteTalk(int id);
+    public boolean updateTalk(Talk talk);
     
 }
