@@ -5,6 +5,8 @@
  */
 package VIEW;
 
+import MODEL.TALKDAO.TalkDAO;
+
 /**
  *
  * @author ht3000052
@@ -37,7 +39,7 @@ public class Conversation extends javax.swing.JPanel {
         Name = new javax.swing.JLabel();
         btnAddPhrase = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 152, 185));
         setMinimumSize(new java.awt.Dimension(446, 26));
@@ -59,7 +61,12 @@ public class Conversation extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Edit");
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,7 +78,7 @@ public class Conversation extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(btnAddPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnEdit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteButton)
                 .addContainerGap())
@@ -82,14 +89,15 @@ public class Conversation extends javax.swing.JPanel {
                 .addComponent(btnAddPhrase)
                 .addComponent(deleteButton)
                 .addComponent(Name)
-                .addComponent(jButton1))
+                .addComponent(btnEdit))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         talksScreen.removeElement(this);
-        
+        TalkDAO talk = new TalkDAO();
+        talk.deleteTalk(this.id);
         
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -101,6 +109,14 @@ public class Conversation extends javax.swing.JPanel {
         phraseFrame.setVisible(true);
         
     }//GEN-LAST:event_btnAddPhraseActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        TalkEditModal talkModal = new TalkEditModal(this.talksScreen);
+        talkModal.setTalkId(this.id);
+        talkModal.setTalkName(this.Name.getText());
+        talkModal.setVisible(true);
+    }//GEN-LAST:event_btnEditActionPerformed
     
     public void setName(String name)
     {
@@ -122,7 +138,7 @@ public class Conversation extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Name;
     private javax.swing.JButton btnAddPhrase;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
