@@ -34,12 +34,17 @@ public class Talks extends javax.swing.JFrame {
         panel.updateUI();
     }
     
-    void updateTalks()
+    public void updateTalks()
     {
       TalkDAO talk = new TalkDAO();
       Talk[] talks = talk.getTalks();
       
-        for (int i = 0; i < talks.length; i++) {            
+      panel.removeAll();
+      panel.repaint();
+      panel.updateUI();
+      conversations.removeAll(conversations);
+        
+        for (int i = 0, indice = 0; i < talks.length; i++) {            
             Conversation c = new Conversation(this);
             c.setName(talks[i].getName());
             c.setId(talks[i].getId());
