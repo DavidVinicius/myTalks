@@ -14,6 +14,8 @@ import MODEL.PHRASEDAO.PhraseDAO;
 public class PhraseComponent extends javax.swing.JPanel {
     Phrases phrasesScreen;
     private int ID;
+    private int talkID;
+   
     PhraseDAO phraseDAO;
     /**
      * Creates new form PhraseComponent
@@ -34,9 +36,19 @@ public class PhraseComponent extends javax.swing.JPanel {
         this.phrase.setText(text);
     }
     
+    public String getPhraseText()
+    {
+        return this.phrase.getText();
+    }
+    
     public void setTranslationText(String text)
     {
         this.translation.setText(text);
+    }
+    
+    public String getTranslationText()
+    {
+        return this.translation.getText();
     }
     
     public void setPhrasesScreen(Phrases p)
@@ -47,6 +59,14 @@ public class PhraseComponent extends javax.swing.JPanel {
     public void setPhraseID(int ID)
     {
         this.ID = ID;
+    }
+    
+    public int getTalkID() {
+        return talkID;
+    }
+
+    public void setTalkID(int talkID) {
+        this.talkID = talkID;
     }
 
     /**
@@ -68,6 +88,11 @@ public class PhraseComponent extends javax.swing.JPanel {
         translation.setText("Translation");
 
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +142,15 @@ public class PhraseComponent extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        PhraseModal phraseModal = new PhraseModal(this.phrasesScreen);        
+        phraseModal.setTalkID(this.getTalkID());        
+        phraseModal.setPhraseTextField(this.getPhraseText());
+        phraseModal.setTranslationTextField(this.getTranslationText());
+        phraseModal.setVisible(true);
+        phraseModal.setPhraseId(this.ID);
+    }//GEN-LAST:event_btnEditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

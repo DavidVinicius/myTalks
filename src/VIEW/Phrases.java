@@ -58,11 +58,7 @@ public class Phrases extends javax.swing.JFrame {
     {            
       PhraseDAO phrase  = new PhraseDAO();
       Phrase[]  phrases = phrase.getPhrases(id);
-      this.phrasesPanel.removeAll();
-      this.phrasesComponent.removeAll(phrasesComponent);
-      this.phrasesPanel.repaint();
-      this.phrasesPanel.validate();
-      this.phrasesPanel.updateUI();
+      cleanPhrases();
             
       for(int i = 0; i < phrases.length; i++)
       {
@@ -70,6 +66,7 @@ public class Phrases extends javax.swing.JFrame {
           tempPhrase.setPhraseText(phrases[i].getPhrase());
           tempPhrase.setTranslationText(phrases[i].getTranslation());          
           tempPhrase.setPhraseID(phrases[i].getId());
+          tempPhrase.setTalkID(talkID);
           
           this.phrasesComponent.add(tempPhrase);
           this.phrasesPanel.add(tempPhrase);
@@ -77,6 +74,15 @@ public class Phrases extends javax.swing.JFrame {
       
       this.phrasesPanel.updateUI();
       
+    }
+    
+    private void cleanPhrases()
+    {
+        this.phrasesPanel.removeAll();
+        this.phrasesComponent.removeAll(phrasesComponent);
+        this.phrasesPanel.repaint();
+        this.phrasesPanel.validate();
+        this.phrasesPanel.updateUI();
     }
 
     /**
@@ -88,11 +94,6 @@ public class Phrases extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        translation = new javax.swing.JTextField();
-        phraseText = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnCreate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         phrasesPanel = new javax.swing.JPanel();
         talkName = new javax.swing.JLabel();
@@ -101,21 +102,11 @@ public class Phrases extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Phrase");
-
-        jLabel2.setText("Translation");
-
-        btnCreate.setText("SAVE");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
-            }
-        });
-
         phrasesPanel.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(phrasesPanel);
 
         talkName.setText("NAME Talk");
+        talkName.setToolTipText("Nome da conversa");
 
         btnBack.setText("Voltar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -138,55 +129,27 @@ public class Phrases extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(phraseText, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(translation, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(362, 362, 362)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(talkName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNewPhrase)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(119, 119, 119)
-                .addComponent(talkName, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNewPhrase)
-                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(talkName)
-                            .addComponent(btnBack)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnNewPhrase)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(phraseText, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(translation, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(talkName)
+                    .addComponent(btnBack)
+                    .addComponent(btnNewPhrase))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,23 +161,6 @@ public class Phrases extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        // TODO add your handling code here:
-        Phrase phraseObject  = new Phrase();
-        phraseObject.setPhrase(this.phraseText.getText());
-        phraseObject.setTranslation(translation.getText());
-        phraseObject.setTalkId(talkID);  
-        
-        PhraseDAO phrase = new PhraseDAO();
-        if(phrase.createPhrase(phraseObject))
-        {               
-            cleanFields();
-            this.updatePhrases(talkID);
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar criar");
-        }
-    }//GEN-LAST:event_btnCreateActionPerformed
-
     private void btnNewPhraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPhraseActionPerformed
         // TODO add your handling code here:
         PhraseModal phraseModal = new PhraseModal(this);
@@ -223,12 +169,7 @@ public class Phrases extends javax.swing.JFrame {
         phraseModal.setPhraseId(0);
         
     }//GEN-LAST:event_btnNewPhraseActionPerformed
- 
-    private void cleanFields()
-    {
-        this.phraseText.setText("");
-        this.translation.setText("");
-    }
+     
     /**
      * @param args the command line arguments
      */
@@ -266,14 +207,9 @@ public class Phrases extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnNewPhrase;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField phraseText;
     private javax.swing.JPanel phrasesPanel;
     private javax.swing.JLabel talkName;
-    private javax.swing.JTextField translation;
     // End of variables declaration//GEN-END:variables
 }

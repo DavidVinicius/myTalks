@@ -34,6 +34,16 @@ public class PhraseModal extends javax.swing.JFrame {
         this.talkID = talkID;
     }
     
+    public void setPhraseTextField(String text)
+    {
+        this.phraseTextField.setText(text);
+    }
+    
+    public void setTranslationTextField(String text)
+    {
+        this.translationTextField.setText(text);
+    }
+    
     /**
      * Creates new form PhraseModal
      */
@@ -45,6 +55,8 @@ public class PhraseModal extends javax.swing.JFrame {
         initComponents();
         this.phraseScreen = phraseScreen;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,7 +75,7 @@ public class PhraseModal extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Phrase");
 
@@ -83,7 +95,7 @@ public class PhraseModal extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Edit Phrase");
+        jLabel3.setText("Phrase");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,19 +155,21 @@ public class PhraseModal extends javax.swing.JFrame {
         Phrase phraseObject  = new Phrase();
         phraseObject.setPhrase(this.phraseTextField.getText());
         phraseObject.setTranslation(this.translationTextField.getText());
+        phraseObject.setId(this.phraseId);
         phraseObject.setTalkId(talkID);
                 
         PhraseDAO phrase = new PhraseDAO();
         
         if(this.getPhraseId() != 0)
         {
-            phrase.updatePhrase(phraseObject);                        
+            phrase.updatePhrase(phraseObject);  
+            System.out.println("update");
         }else{
-            phrase.createPhrase(phraseObject);            
+            phrase.createPhrase(phraseObject);                        
         }
         
         this.phraseScreen.updatePhrases(talkID);
-                this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
