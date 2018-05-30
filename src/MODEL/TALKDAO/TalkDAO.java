@@ -98,7 +98,17 @@ public class TalkDAO implements ITalkDAO{
 
     @Override
     public boolean createTalk(Talk talk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        con = SQLiteConnection.getConnection();
+        
+        try {
+            stm = con.prepareStatement("INSERT INTO Talks (name) VALUES (?)");
+            stm.setString(1, talk.getName());            
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TalkDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override

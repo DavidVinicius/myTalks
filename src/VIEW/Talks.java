@@ -74,6 +74,7 @@ public class Talks extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         panel = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
+        btnNewTalk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Your Talks");
@@ -92,6 +93,13 @@ public class Talks extends javax.swing.JFrame {
 
         btnBack.setText("Voltar");
 
+        btnNewTalk.setText("NOVO");
+        btnNewTalk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewTalkActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainLayout = new javax.swing.GroupLayout(Main);
         Main.setLayout(MainLayout);
         MainLayout.setHorizontalGroup(
@@ -101,7 +109,9 @@ public class Talks extends javax.swing.JFrame {
                 .addComponent(btnBack)
                 .addGap(137, 137, 137)
                 .addComponent(jLabel1)
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addComponent(btnNewTalk)
+                .addGap(33, 33, 33))
             .addGroup(MainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -113,7 +123,8 @@ public class Talks extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addComponent(btnNewTalk))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addContainerGap())
@@ -132,6 +143,14 @@ public class Talks extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNewTalkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewTalkActionPerformed
+        // TODO add your handling code here:
+        TalkEditModal talkModal = new TalkEditModal(this);
+        talkModal.setTalkId(0);
+        talkModal.setVisible(true);
+        
+    }//GEN-LAST:event_btnNewTalkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +190,7 @@ public class Talks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Main;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnNewTalk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;

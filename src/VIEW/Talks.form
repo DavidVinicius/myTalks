@@ -50,7 +50,9 @@
                   <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="307" max="32767" attributes="0"/>
+                  <EmptySpace pref="206" max="32767" attributes="0"/>
+                  <Component id="btnNewTalk" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -66,6 +68,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNewTalk" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="430" max="32767" attributes="0"/>
@@ -110,6 +113,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnNewTalk">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="NOVO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewTalkActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

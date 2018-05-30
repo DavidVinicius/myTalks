@@ -133,16 +133,13 @@ public class TalkEditModal extends javax.swing.JFrame {
         
         if(this.getTalkId() != 0)
         {
-            if(talkDAO.updateTalk(talk))
-            {
-                this.talksScreen.updateTalks();
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao tentar atualizar");
-            }
-        
+            talkDAO.updateTalk(talk);                    
+        }else{
+            talkDAO.createTalk(talk);
         }
         
+        this.talksScreen.updateTalks();
+        this.dispose();
         
         
     }//GEN-LAST:event_btnSaveActionPerformed
