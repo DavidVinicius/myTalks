@@ -40,6 +40,7 @@ public class Conversation extends javax.swing.JPanel {
         btnAddPhrase = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
+        btnListen = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 152, 185));
         setMinimumSize(new java.awt.Dimension(446, 26));
@@ -73,6 +74,13 @@ public class Conversation extends javax.swing.JPanel {
             }
         });
 
+        btnListen.setText("Listen");
+        btnListen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,7 +88,9 @@ public class Conversation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btnListen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit)
@@ -94,7 +104,8 @@ public class Conversation extends javax.swing.JPanel {
                 .addComponent(btnAddPhrase)
                 .addComponent(deleteButton)
                 .addComponent(Name)
-                .addComponent(btnEdit))
+                .addComponent(btnEdit)
+                .addComponent(btnListen))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -130,6 +141,14 @@ public class Conversation extends javax.swing.JPanel {
         phraseFrame.setTalkName(this.Name.getText());
         phraseFrame.setVisible(true);
     }//GEN-LAST:event_selecionado
+
+    private void btnListenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListenActionPerformed
+        // TODO add your handling code here:
+        ListenScreen listenScreen = new ListenScreen(talksScreen,this.id);
+        listenScreen.setVisible(true);
+        listenScreen.setName(this.Name.getText());
+        talksScreen.setVisible(false);
+    }//GEN-LAST:event_btnListenActionPerformed
     
     public void setName(String name)
     {
@@ -152,6 +171,7 @@ public class Conversation extends javax.swing.JPanel {
     private javax.swing.JLabel Name;
     private javax.swing.JButton btnAddPhrase;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnListen;
     private javax.swing.JButton deleteButton;
     // End of variables declaration//GEN-END:variables
 }

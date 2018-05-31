@@ -30,7 +30,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="Name" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace pref="71" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <Component id="btnListen" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAddPhrase" min="-2" pref="81" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
@@ -47,6 +49,7 @@
               <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
               <Component id="Name" alignment="3" min="-2" max="-2" attributes="0"/>
               <Component id="btnEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="btnListen" alignment="3" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,6 +85,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnListen">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListenActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
