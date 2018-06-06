@@ -42,7 +42,7 @@ public class Conversation extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         btnListen = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 152, 185));
+        setBackground(new java.awt.Color(206, 214, 224));
         setMinimumSize(new java.awt.Dimension(446, 26));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -50,7 +50,7 @@ public class Conversation extends javax.swing.JPanel {
             }
         });
 
-        Name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Name.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         Name.setText("Nome");
 
         btnAddPhrase.setText("Add");

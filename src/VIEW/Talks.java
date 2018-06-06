@@ -86,13 +86,16 @@ public class Talks extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Your Talks");
+        setBackground(new java.awt.Color(206, 214, 224));
         setResizable(false);
 
         Main.setBackground(new java.awt.Color(206, 214, 224));
 
+        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Your talks");
 
-        jScrollPane1.setBackground(new java.awt.Color(0, 152, 185));
+        jScrollPane1.setBackground(new java.awt.Color(204, 216, 224));
         jScrollPane1.setBorder(null);
 
         panel.setBackground(new java.awt.Color(206, 214, 224));
@@ -120,9 +123,9 @@ public class Talks extends javax.swing.JFrame {
             .addGroup(MainLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)
-                .addGap(137, 137, 137)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnNewTalk)
                 .addGap(33, 33, 33))
             .addGroup(MainLayout.createSequentialGroup()
@@ -139,7 +142,7 @@ public class Talks extends javax.swing.JFrame {
                     .addComponent(btnBack)
                     .addComponent(btnNewTalk))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
