@@ -7,6 +7,7 @@ package VIEW;
 
 import MODEL.PHRASEDAO.Phrase;
 import MODEL.PHRASEDAO.PhraseDAO;
+import Services.Speaker;
 import javax.swing.JLabel;
 
 /**
@@ -73,14 +74,22 @@ public class ListenScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnVoltar = new javax.swing.JButton();
-        btnListenAll = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         phrasesPanel = new javax.swing.JPanel();
+        btnVoltar = new javax.swing.JButton();
+        btnListenAll = new javax.swing.JButton();
         Name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(206, 214, 224));
+
+        phrasesPanel.setBackground(new java.awt.Color(206, 214, 224));
+        phrasesPanel.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane1.setViewportView(phrasesPanel);
+
+        btnVoltar.setFont(new java.awt.Font("Agency FB", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,45 +97,56 @@ public class ListenScreen extends javax.swing.JFrame {
             }
         });
 
+        btnListenAll.setFont(new java.awt.Font("Agency FB", 1, 12)); // NOI18N
         btnListenAll.setText("Listen All");
+        btnListenAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListenAllActionPerformed(evt);
+            }
+        });
 
-        phrasesPanel.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane1.setViewportView(phrasesPanel);
-
-        Name.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        Name.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name.setText("text");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                        .addGap(60, 60, 60)
+                        .addComponent(btnListenAll, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnListenAll, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnVoltar)
-                        .addGap(38, 38, 38)
-                        .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnListenAll)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(6, 6, 6))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnVoltar)
-                        .addComponent(btnListenAll, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,6 +156,19 @@ public class ListenScreen extends javax.swing.JFrame {
         this.talkScreen.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnListenAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListenAllActionPerformed
+        // TODO add your handling code here:
+        PhraseDAO phrase  = new PhraseDAO();
+        Phrase[]  phrases = phrase.getPhrases(this.talkId);
+        String   phraseAll = "";
+        
+        for (int i = 0; i < phrases.length; i++) {
+            phraseAll = phraseAll + "   " +phrases[i].getPhrase();
+        }
+        
+        Speaker.speak(phraseAll);
+    }//GEN-LAST:event_btnListenAllActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +209,7 @@ public class ListenScreen extends javax.swing.JFrame {
     private javax.swing.JLabel Name;
     private javax.swing.JButton btnListenAll;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel phrasesPanel;
     // End of variables declaration//GEN-END:variables
