@@ -38,7 +38,7 @@
     <Container class="javax.swing.JPanel" name="Main">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b9" green="98" red="0" type="rgb"/>
+          <Color blue="e0" green="d6" red="ce" type="rgb"/>
         </Property>
       </Properties>
 
@@ -98,7 +98,7 @@
             <Container class="javax.swing.JPanel" name="panel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="b9" green="98" red="0" type="rgb"/>
+                  <Color blue="e0" green="d6" red="ce" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -113,6 +113,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnNewTalk">
           <Properties>

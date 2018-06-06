@@ -80,24 +80,30 @@ public class PhraseComponent extends javax.swing.JPanel {
 
         phrase = new javax.swing.JLabel();
         translation = new javax.swing.JLabel();
-        btnEdit = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        iconEdit = new javax.swing.JLabel();
+        iconDelete = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(206, 214, 224));
+
+        phrase.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         phrase.setText("Phrase");
 
+        translation.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         translation.setText("Translation");
 
-        btnEdit.setText("Edit");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+        iconEdit.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\tools.png")); // NOI18N
+        iconEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconEditMouseClicked(evt);
             }
         });
 
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+        iconDelete.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\remove.png")); // NOI18N
+        iconDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconDeleteMouseClicked(evt);
             }
         });
 
@@ -110,52 +116,52 @@ public class PhraseComponent extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(phrase)
                     .addComponent(translation))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(btnDelete)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                .addComponent(iconEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(iconDelete)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(5, 5, 5)
                 .addComponent(phrase)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(translation)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(iconDelete)
+                    .addComponent(iconEdit))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void iconEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconEditMouseClicked
         // TODO add your handling code here:
-        //System.out.println("deletar phrase"+this.ID);
-        if(phraseDAO.deletePhrase(this.ID))
-        {
-            phrasesScreen.removeElement(this);
-        }
-        
-        
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         PhraseModal phraseModal = new PhraseModal(this.phrasesScreen);        
         phraseModal.setTalkID(this.getTalkID());        
         phraseModal.setPhraseTextField(this.getPhraseText());
         phraseModal.setTranslationTextField(this.getTranslationText());
         phraseModal.setVisible(true);
         phraseModal.setPhraseId(this.ID);
-    }//GEN-LAST:event_btnEditActionPerformed
+    }//GEN-LAST:event_iconEditMouseClicked
+
+    private void iconDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconDeleteMouseClicked
+        
+         if(phraseDAO.deletePhrase(this.ID))
+        {
+            phrasesScreen.removeElement(this);
+        }
+        
+    }//GEN-LAST:event_iconDeleteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JLabel iconDelete;
+    private javax.swing.JLabel iconEdit;
     private javax.swing.JLabel phrase;
     private javax.swing.JLabel translation;
     // End of variables declaration//GEN-END:variables

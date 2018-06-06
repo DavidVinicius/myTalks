@@ -18,6 +18,7 @@ import java.util.List;
 public class Talks extends javax.swing.JFrame {
     private List <Conversation> conversations;
     int indice = 0;
+    Home homeScreen;
     /**
      * Creates new form Talks
      */
@@ -25,6 +26,13 @@ public class Talks extends javax.swing.JFrame {
         initComponents();
         conversations = new ArrayList<>();                        
         updateTalks();
+    }
+
+    Talks(Home homeScreen) {
+        initComponents();
+        conversations = new ArrayList<>();                        
+        updateTalks();
+        this.homeScreen = homeScreen;
     }
     
     public void removeElement(Conversation c)
@@ -80,18 +88,23 @@ public class Talks extends javax.swing.JFrame {
         setTitle("Your Talks");
         setResizable(false);
 
-        Main.setBackground(new java.awt.Color(0, 152, 185));
+        Main.setBackground(new java.awt.Color(206, 214, 224));
 
         jLabel1.setText("Your talks");
 
         jScrollPane1.setBackground(new java.awt.Color(0, 152, 185));
         jScrollPane1.setBorder(null);
 
-        panel.setBackground(new java.awt.Color(0, 152, 185));
+        panel.setBackground(new java.awt.Color(206, 214, 224));
         panel.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(panel);
 
         btnBack.setText("Voltar");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnNewTalk.setText("NOVO");
         btnNewTalk.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +164,12 @@ public class Talks extends javax.swing.JFrame {
         talkModal.setVisible(true);
         
     }//GEN-LAST:event_btnNewTalkActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        this.homeScreen.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
