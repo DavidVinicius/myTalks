@@ -40,7 +40,7 @@ public class Conversation extends javax.swing.JPanel {
         btnAddPhrase = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnListen = new javax.swing.JButton();
+        iconListen = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(206, 214, 224));
         setMinimumSize(new java.awt.Dimension(446, 26));
@@ -74,10 +74,10 @@ public class Conversation extends javax.swing.JPanel {
             }
         });
 
-        btnListen.setText("Listen");
-        btnListen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListenActionPerformed(evt);
+        iconListen.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\ear.png")); // NOI18N
+        iconListen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconListenMouseClicked(evt);
             }
         });
 
@@ -88,9 +88,9 @@ public class Conversation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btnListen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
+                .addComponent(iconListen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(btnAddPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit)
@@ -105,7 +105,7 @@ public class Conversation extends javax.swing.JPanel {
                 .addComponent(deleteButton)
                 .addComponent(Name)
                 .addComponent(btnEdit)
-                .addComponent(btnListen))
+                .addComponent(iconListen))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,13 +142,13 @@ public class Conversation extends javax.swing.JPanel {
         phraseFrame.setVisible(true);
     }//GEN-LAST:event_selecionado
 
-    private void btnListenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListenActionPerformed
+    private void iconListenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconListenMouseClicked
         // TODO add your handling code here:
         ListenScreen listenScreen = new ListenScreen(talksScreen,this.id);
         listenScreen.setVisible(true);
         listenScreen.setName(this.Name.getText());
         talksScreen.setVisible(false);
-    }//GEN-LAST:event_btnListenActionPerformed
+    }//GEN-LAST:event_iconListenMouseClicked
     
     public void setName(String name)
     {
@@ -171,7 +171,7 @@ public class Conversation extends javax.swing.JPanel {
     private javax.swing.JLabel Name;
     private javax.swing.JButton btnAddPhrase;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnListen;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel iconListen;
     // End of variables declaration//GEN-END:variables
 }
