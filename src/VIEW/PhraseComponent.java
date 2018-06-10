@@ -91,7 +91,7 @@ public class PhraseComponent extends javax.swing.JPanel {
         translation.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         translation.setText("Translation");
 
-        iconEdit.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\tools.png")); // NOI18N
+        iconEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/tools.png"))); // NOI18N
         iconEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,7 +99,7 @@ public class PhraseComponent extends javax.swing.JPanel {
             }
         });
 
-        iconDelete.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\remove.png")); // NOI18N
+        iconDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/remove.png"))); // NOI18N
         iconDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -135,7 +135,7 @@ public class PhraseComponent extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(iconDelete)
                     .addComponent(iconEdit))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

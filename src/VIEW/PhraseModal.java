@@ -54,6 +54,7 @@ public class PhraseModal extends javax.swing.JFrame {
     PhraseModal(Phrases phraseScreen) {
         initComponents();
         this.phraseScreen = phraseScreen;
+        this.setLocationRelativeTo(null);
     }
     
     

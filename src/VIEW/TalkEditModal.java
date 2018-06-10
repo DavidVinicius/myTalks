@@ -28,6 +28,7 @@ public class TalkEditModal extends javax.swing.JFrame {
     public TalkEditModal(Talks talksScreen) {
         initComponents();
         this.talksScreen = talksScreen;
+        this.setLocationRelativeTo(null);
     }
 
     public int getTalkId() {

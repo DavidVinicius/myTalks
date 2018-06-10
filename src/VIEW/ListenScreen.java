@@ -29,6 +29,7 @@ public class ListenScreen extends javax.swing.JFrame {
         talkScreen = talksScreen;
         talkId     = id;
         updatePhrases(talkId);
+        this.setLocationRelativeTo(null);
     }
     
     public void setName(String Name) {
@@ -82,6 +83,7 @@ public class ListenScreen extends javax.swing.JFrame {
         iconListenAll = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(550, 500));
 
         jPanel1.setBackground(new java.awt.Color(206, 214, 224));
 
@@ -96,7 +98,7 @@ public class ListenScreen extends javax.swing.JFrame {
         Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name.setText("text");
 
-        iconBack.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\back (1).png")); // NOI18N
+        iconBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/back (1).png"))); // NOI18N
         iconBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,7 +107,7 @@ public class ListenScreen extends javax.swing.JFrame {
         });
 
         iconListenAll.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
-        iconListenAll.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\megaphone.png")); // NOI18N
+        iconListenAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/megaphone.png"))); // NOI18N
         iconListenAll.setText("LISTEN ALL");
         iconListenAll.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconListenAll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,7 +128,7 @@ public class ListenScreen extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(iconBack)
                         .addGap(84, 84, 84)
-                        .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                         .addGap(81, 81, 81)
                         .addComponent(iconListenAll)
                         .addGap(34, 34, 34)))
@@ -143,7 +145,7 @@ public class ListenScreen extends javax.swing.JFrame {
                                 .addComponent(iconListenAll))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
-                                .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
+                                .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)

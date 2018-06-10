@@ -41,7 +41,7 @@ public class PhraseSpeakerComponent extends javax.swing.JPanel {
         translationLabel.setFont(new java.awt.Font("Agency FB", 1, 12)); // NOI18N
         translationLabel.setText("translation");
 
-        iconSpeaker.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\speaker.png")); // NOI18N
+        iconSpeaker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/speaker.png"))); // NOI18N
         iconSpeaker.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconSpeaker.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

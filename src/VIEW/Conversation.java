@@ -37,10 +37,10 @@ public class Conversation extends javax.swing.JPanel {
     private void initComponents() {
 
         Name = new javax.swing.JLabel();
-        btnAddPhrase = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
         iconListen = new javax.swing.JLabel();
+        iconNewPhrase = new javax.swing.JLabel();
+        iconEdit = new javax.swing.JLabel();
+        iconDelete = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(206, 214, 224));
         setMinimumSize(new java.awt.Dimension(446, 26));
@@ -53,31 +53,36 @@ public class Conversation extends javax.swing.JPanel {
         Name.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         Name.setText("Nome");
 
-        btnAddPhrase.setText("Add");
-        btnAddPhrase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddPhraseActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setText("delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-
-        btnEdit.setText("Edit");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-
-        iconListen.setIcon(new javax.swing.ImageIcon("E:\\myTalks\\images\\ear.png")); // NOI18N
+        iconListen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/ear.png"))); // NOI18N
+        iconListen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconListen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iconListenMouseClicked(evt);
+            }
+        });
+
+        iconNewPhrase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/new.png"))); // NOI18N
+        iconNewPhrase.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconNewPhrase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconNewPhraseMouseClicked(evt);
+            }
+        });
+
+        iconEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/tools.png"))); // NOI18N
+        iconEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconEditMouseClicked(evt);
+            }
+        });
+
+        iconDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/remove.png"))); // NOI18N
+        iconDelete.setToolTipText("");
+        iconDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconDeleteMouseClicked(evt);
             }
         });
 
@@ -88,51 +93,25 @@ public class Conversation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                 .addComponent(iconListen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(btnAddPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEdit)
+                .addComponent(iconNewPhrase)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(iconEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deleteButton)
+                .addComponent(iconDelete)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnAddPhrase)
-                .addComponent(deleteButton)
-                .addComponent(Name)
-                .addComponent(btnEdit)
-                .addComponent(iconListen))
+            .addComponent(iconListen)
+            .addComponent(iconNewPhrase)
+            .addComponent(iconEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(iconDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Name)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-        talksScreen.removeElement(this);
-        TalkDAO talk = new TalkDAO();
-        talk.deleteTalk(this.id);
-        
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void btnAddPhraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhraseActionPerformed
-        // TODO add your handling code here:
-        talksScreen.setVisible(false);
-        Phrases phraseFrame = new Phrases(talksScreen,this.id);
-        phraseFrame.setTalkName(this.Name.getText());
-        phraseFrame.setVisible(true);
-        
-    }//GEN-LAST:event_btnAddPhraseActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
-        TalkEditModal talkModal = new TalkEditModal(this.talksScreen);
-        talkModal.setTalkId(this.id);
-        talkModal.setTalkName(this.Name.getText());
-        talkModal.setVisible(true);
-    }//GEN-LAST:event_btnEditActionPerformed
 
     private void selecionado(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionado
         // TODO add your handling code here:
@@ -149,6 +128,29 @@ public class Conversation extends javax.swing.JPanel {
         listenScreen.setName(this.Name.getText());
         talksScreen.setVisible(false);
     }//GEN-LAST:event_iconListenMouseClicked
+
+    private void iconNewPhraseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNewPhraseMouseClicked
+        // TODO add your handling code here:
+         talksScreen.setVisible(false);
+        Phrases phraseFrame = new Phrases(talksScreen,this.id);
+        phraseFrame.setTalkName(this.Name.getText());
+        phraseFrame.setVisible(true);
+    }//GEN-LAST:event_iconNewPhraseMouseClicked
+
+    private void iconEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconEditMouseClicked
+        // TODO add your handling code here:
+        TalkEditModal talkModal = new TalkEditModal(this.talksScreen);
+        talkModal.setTalkId(this.id);
+        talkModal.setTalkName(this.Name.getText());
+        talkModal.setVisible(true);
+    }//GEN-LAST:event_iconEditMouseClicked
+
+    private void iconDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconDeleteMouseClicked
+        // TODO add your handling code here:
+        talksScreen.removeElement(this);
+        TalkDAO talk = new TalkDAO();
+        talk.deleteTalk(this.id);
+    }//GEN-LAST:event_iconDeleteMouseClicked
     
     public void setName(String name)
     {
@@ -169,9 +171,9 @@ public class Conversation extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Name;
-    private javax.swing.JButton btnAddPhrase;
-    private javax.swing.JButton btnEdit;
-    private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel iconDelete;
+    private javax.swing.JLabel iconEdit;
     private javax.swing.JLabel iconListen;
+    private javax.swing.JLabel iconNewPhrase;
     // End of variables declaration//GEN-END:variables
 }

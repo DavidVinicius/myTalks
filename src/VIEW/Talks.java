@@ -33,6 +33,7 @@ public class Talks extends javax.swing.JFrame {
         conversations = new ArrayList<>();                        
         updateTalks();
         this.homeScreen = homeScreen;
+        this.setLocationRelativeTo(null);
     }
     
     public void removeElement(Conversation c)
@@ -81,12 +82,13 @@ public class Talks extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panel = new javax.swing.JPanel();
-        btnBack = new javax.swing.JButton();
-        btnNewTalk = new javax.swing.JButton();
+        iconNew = new javax.swing.JLabel();
+        iconBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Your Talks");
         setBackground(new java.awt.Color(206, 214, 224));
+        setPreferredSize(new java.awt.Dimension(550, 500));
         setResizable(false);
 
         Main.setBackground(new java.awt.Color(206, 214, 224));
@@ -102,17 +104,19 @@ public class Talks extends javax.swing.JFrame {
         panel.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(panel);
 
-        btnBack.setText("Voltar");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+        iconNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/add-button-inside-black-circle.png"))); // NOI18N
+        iconNew.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconNew.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconNewMouseClicked(evt);
             }
         });
 
-        btnNewTalk.setText("NOVO");
-        btnNewTalk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewTalkActionPerformed(evt);
+        iconBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/back (1).png"))); // NOI18N
+        iconBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconBackMouseClicked(evt);
             }
         });
 
@@ -121,28 +125,29 @@ public class Talks extends javax.swing.JFrame {
         MainLayout.setHorizontalGroup(
             MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnNewTalk)
-                .addGap(33, 33, 33))
-            .addGroup(MainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MainLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(iconBack, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addComponent(iconNew, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainLayout.setVerticalGroup(
             MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnBack)
-                    .addComponent(btnNewTalk))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iconNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iconBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -160,19 +165,18 @@ public class Talks extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNewTalkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewTalkActionPerformed
+    private void iconNewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNewMouseClicked
         // TODO add your handling code here:
-        TalkEditModal talkModal = new TalkEditModal(this);
+         TalkEditModal talkModal = new TalkEditModal(this);
         talkModal.setTalkId(0);
         talkModal.setVisible(true);
-        
-    }//GEN-LAST:event_btnNewTalkActionPerformed
+    }//GEN-LAST:event_iconNewMouseClicked
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void iconBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBackMouseClicked
         // TODO add your handling code here:
         this.homeScreen.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnBackActionPerformed
+    }//GEN-LAST:event_iconBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -211,8 +215,8 @@ public class Talks extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Main;
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnNewTalk;
+    private javax.swing.JLabel iconBack;
+    private javax.swing.JLabel iconNew;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
