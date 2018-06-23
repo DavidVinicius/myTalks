@@ -20,7 +20,8 @@ public class Setup {
     {
         createTalkTable();
         createPhrasesTable();
-        this.InsertsDefault();
+        createViews();
+        //this.InsertsDefault();
     }        
     
     private void createTalkTable()
@@ -60,16 +61,45 @@ public class Setup {
         
         Connection con = null;            
         Statement stm = null;
+        Statement stm2 = null;
         try{                  
             con = SQLiteConnection.getConnection();
+            stm2 = con.createStatement();
             stm = con.createStatement();
-            stm.execute(sql);            
+            stm2.execute("PRAGMA foreign_keys=on;");
+            stm.execute(sql);                        
             stm.closeOnCompletion();
             
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
         finally{            
+            SQLiteConnection.closeConnection(con);
+        }
+    }
+    
+    public void createViews()
+    {
+        String SQL[] = new String[2];
+        SQL[0] = "CREATE VIEW IF NOT EXISTS vw_phrases as SELECT * FROM Phrases";        
+        
+         Connection con = null;
+        Statement stm = null;
+                
+        try{
+            
+            con = SQLiteConnection.getConnection();
+            stm = con.createStatement();                        
+            
+            for (int i = 0; i < 1; i++) {
+                stm.execute(SQL[i]);
+            }
+            stm.closeOnCompletion();
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        finally{
             SQLiteConnection.closeConnection(con);
         }
     }

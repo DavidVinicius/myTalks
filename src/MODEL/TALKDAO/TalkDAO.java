@@ -6,6 +6,7 @@
 package MODEL.TALKDAO;
 
 import Services.SQLiteConnection;
+import Services.Transaction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -23,12 +26,14 @@ public class TalkDAO implements ITalkDAO{
     public Talk talk;
     private Connection con;
     private PreparedStatement stm;
+    private Statement statement;
     private ResultSet         rs;
     
     public TalkDAO()
     {
           con        = null;
           stm        = null;
+          statement  = null;
           rs         = null;
     }
 
@@ -41,8 +46,8 @@ public class TalkDAO implements ITalkDAO{
         this.rs         = null;
         try{
             
-            con = SQLiteConnection.getConnection();            
-            stm = con.prepareStatement("SELECT * FROM Talks WHERE name like '%"+name+"%' Limit 1");            
+            con = SQLiteConnection.getConnection();                        
+            stm = con.prepareStatement("SELECT * FROM Talks WHERE name like '%"+name+"%' Limit 1");                        
             rs = stm.executeQuery();            
                        
             while(rs.next())
@@ -115,12 +120,22 @@ public class TalkDAO implements ITalkDAO{
     public boolean deleteTalk(int id) {
         con = SQLiteConnection.getConnection();
         
-        try {
+        try {            
+            statement = con.createStatement();
+            statement.execute("BEGIN TRANSACTION");
+            
             stm = con.prepareStatement("DELETE FROM Talks WHERE id = ?");
-            stm.setInt(1, id);
+            stm.setInt(1, id);            
+            statement.execute("PRAGMA foreign_keys = ON");
             stm.executeUpdate();
+            statement.execute("COMMIT");
             return true;
         } catch (SQLException ex) {
+            try {
+                statement.execute("ROLLBACK;");
+            } catch (SQLException ex1) {
+                Logger.getLogger(TalkDAO.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             Logger.getLogger(TalkDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         

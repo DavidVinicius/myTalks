@@ -6,6 +6,13 @@
 package VIEW;
 
 import MODEL.PHRASEDAO.PhraseDAO;
+import Services.Transaction;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
 
 /**
  *
@@ -150,11 +157,11 @@ public class PhraseComponent extends javax.swing.JPanel {
     }//GEN-LAST:event_iconEditMouseClicked
 
     private void iconDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconDeleteMouseClicked
-        
-         if(phraseDAO.deletePhrase(this.ID))
+                
+        if(phraseDAO.deletePhrase(this.ID))
         {
             phrasesScreen.removeElement(this);
-        }
+        }        
         
     }//GEN-LAST:event_iconDeleteMouseClicked
 

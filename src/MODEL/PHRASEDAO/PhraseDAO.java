@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,13 +25,14 @@ public class PhraseDAO implements IPhraseDAO {
     ResultSet        rs    = null;
     Phrase [] phrases      = null;
     Phrase    phrase       = null;
+    private Statement statement;
 
     @Override
     public Phrase[] getPhrases(int ID) {
         
         try{
             con = SQLiteConnection.getConnection();
-            stm = con.prepareStatement("SELECT * FROM Phrases WHERE talk_id = "+ID);
+            stm = con.prepareStatement("SELECT * FROM vw_phrases WHERE talk_id = "+ID);
             //stm.setInt(1, ID);            
             rs = stm.executeQuery();
             
@@ -79,12 +81,22 @@ public class PhraseDAO implements IPhraseDAO {
     public boolean deletePhrase(int phraseID) {
         try{
             con = SQLiteConnection.getConnection();
+            statement = con.createStatement();
+            statement.execute("BEGIN TRANSACTION");
+            
             stm = con.prepareStatement("DELETE FROM Phrases WHERE id = ?");
             stm.setInt(1, phraseID);
             stm.executeUpdate();
+            
+            statement.execute("COMMIT");
             return true;
             
         } catch (SQLException ex) {
+            try {
+                statement.execute("ROLLBACK");
+            } catch (SQLException ex1) {
+                Logger.getLogger(PhraseDAO.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             Logger.getLogger(PhraseDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
